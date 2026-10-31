@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Nombre - Full-Stack Developer</title>
+    <!-- Tailwind CSS para un diseño moderno y rápido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-400 font-sans leading-relaxed selection:bg-teal-300 selection:text-teal-900">
+
+    <div class="max-w-screen-xl mx-auto px-6 min-h-screen md:flex md:justify-between md:gap-4">
+        
+        <!-- PANEL IZQUIERDO (Fijo al hacer scroll en desktop) -->
+        <header class="md:w-1/2 md:py-24 md:sticky md:top-0 md:flex md:flex-col md:justify-between py-12">
+            <div>
+                <h1 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+                    <a href="/">Tu Nombre</a>
+                </h1>
+                <h2 class="text-lg font-medium tracking-tight text-slate-200 mt-3 sm:text-xl">
+                    Full-Stack Software Developer
+                </h2>
+                <p class="mt-4 max-w-xs leading-normal text-slate-400">
+                    Construyo aplicaciones web robustas, sistemas interactivos y arquitecturas escalables de punta a punta.
+                </p>
+                
+                <!-- Menú de navegación lateral -->
+                <nav class="nav hidden md:block mt-16">
+                    <ul class="space-y-3 w-max">
+                        <li><a href="#about" class="flex items-center text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-200 py-2">Sobre mí</a></li>
+                        <li><a href="#projects" class="flex items-center text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-200 py-2">Proyectos</a></li>
+                        <li><a href="#contact" class="flex items-center text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-200 py-2">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Redes Sociales -->
+            <div class="flex items-center gap-5 mt-8 md:mt-0">
+                <a href="https://github.com/tu-usuario" target="_blank" class="text-slate-400 hover:text-slate-200 text-sm">GitHub</a>
+                <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="text-slate-400 hover:text-slate-200 text-sm">LinkedIn</a>
+            </div>
+        </header>
+
+        <!-- PANEL DERECHO (Contenido deslizable) -->
+        <main class="md:w-1/2 py-24 space-y-24">
+            
+            <!-- Sección Sobre Mí -->
+            <section id="about" class="space-y-4">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200 md:hidden mb-4">Sobre mí</h2>
+                <p>
+                    Apasionado por el desarrollo de software y la resolución de problemas complejos. Me especializo en conectar interfaces dinámicas con backends eficientes y bases de datos optimizadas.
+                </p>
+                <p>
+                    Actualmente enfocado en crear arquitecturas limpias, optimizar rendimiento y desarrollar proyectos propios que resuelven problemas del mundo real.
+                </p>
+            </section>
+
+            <!-- Sección Proyectos (Cargados dinámicamente desde Python) -->
+            <section id="projects" class="space-y-8">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200 md:hidden mb-4">Proyectos</h2>
+                <div class="space-y-6">
+                    {% for proyecto in proyectos %}
+                    <div class="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:hover:!opacity-100 p-4 rounded-lg hover:bg-slate-900/50 border border-transparent hover:border-slate-800">
+                        <div class="sm:col-span-8">
+                            <h3 class="font-medium text-slate-200 group-hover:text-teal-300 transition-colors">
+                                <a href="{{ proyecto.link }}" target="_blank" class="flex items-center justify-between">
+                                    <span>{{ proyecto.titulo }}</span>
+                                    <span class="text-xs">↗</span>
+                                </a>
+                            </h3>
+                            <p class="mt-2 text-sm leading-normal text-slate-400">
+                                {{ proyecto.descripcion }}
+                            </p>
+                            <ul class="mt-4 flex flex-wrap gap-2">
+                                {% for tech in proyecto.tecnologias %}
+                                <li class="bg-teal-950/50 text-teal-300 text-xs px-3 py-1 rounded-full font-medium border border-teal-800/50">{{ tech }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Sección Contacto -->
+            <section id="contact" class="space-y-4">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200 md:hidden mb-4">Contacto</h2>
+                <p>¿Tienes alguna propuesta o quieres que conversemos sobre tecnología? Mi bandeja de entrada siempre está abierta.</p>
+                <a href="mailto:tu-correo@example.com" class="inline-block font-medium text-slate-200 bg-teal-500/10 border border-teal-500/20 px-5 py-3 rounded-md hover:bg-teal-500/20 transition-colors">
+                    Enviar mensaje
+                </a>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
